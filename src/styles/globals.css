@@ -76,10 +76,9 @@
         --btn-py: 1.125rem;
     }
 }
-body {
-  font-family: "Arial", sans-serif;
-}
+
 #drop-zone {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,36 +86,17 @@ body {
   max-width: 100%;
   height: 200px;
   padding: 1em;
-  border: 1px solid #cccccc;
+  border: 1px solid #ffffffff;
   border-radius: 4px;
   color: slategray;
   cursor: pointer;
 }
 #file-input {
-  display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
 }
 
-#preview {
-  width: 500px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  list-style: none;
-  padding: 0;
-}
-
-#preview li {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin: 0;
-  width: 100%;
-  height: 100px;
-}
-
-#preview img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
