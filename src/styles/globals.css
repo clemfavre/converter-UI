@@ -93,6 +93,7 @@
 }
 #file-input {
     position: absolute;
+    display: inline;
     top: 0;
     left: 0;
     width: 100%;
