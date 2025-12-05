@@ -2,13 +2,13 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67272ff;
+    --color-primary: #ff2121cf;
     --color-primary-content: #000000ff;
-    --color-complementary: #f6e775ff;
+    --color-complementary: #f9e639ff;
     --background-image-noise: linear-gradient(
             to bottom,
             color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
+            color-mix(in oklab, var(--color-gray-950) 60%, transparent)
         ),
         url('/images/noise.png');
 }
@@ -79,21 +79,23 @@
 
 #drop-zone {
   position: relative;
+  margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
+  width: 600px;
   max-width: 100%;
-  height: 200px;
+  height: 300px;
   padding: 1em;
   border: 1px solid #ffffffff;
   border-radius: 4px;
-  color: slategray;
+  color: white;
   cursor: pointer;
 }
+
 #file-input {
     position: absolute;
-    display: inline;
+    display: contents;
     top: 0;
     left: 0;
     width: 100%;
@@ -101,3 +103,11 @@
     cursor: pointer;
 }
 
+.button-row {
+    @apply flex justify-between mt-4;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;      /* same width as drop-zone */
+    max-width: 100%;
+}

@@ -1,7 +1,10 @@
 let ldrContent = ""; // stores the .ldr file text
 
 const dropZone = document.getElementById("drop-zone");
+const dropZoneText = dropZone.textContent;
 const fileInput = document.getElementById("file-input");
+const filePreview = document.getElementById("preview");
+const clearButton = document.getElementById("clear-btn");
 
 // Clicking the zone opens the file dialog
 dropZone.addEventListener("click", () => fileInput.click());
@@ -35,6 +38,8 @@ function handleFile(file) {
 
     reader.onload = (e) => {
         ldrContent = e.target.result; // the text of the LDR file
+        dropZone.textContent = "";
+        dropZone.textContent = file.name;
 
         console.log("LDR file content loaded:");
         console.log(ldrContent);
@@ -51,3 +56,9 @@ function processLDR(text) {
     console.log("Processing LDR...");
     // --- Insert your own program logic here ---
 }
+
+// Clears the DropZone, resets the ldrContent
+clearButton.addEventListener("click", () => {
+    ldrContent = "";
+    dropZone.textContent = dropZoneText;
+})

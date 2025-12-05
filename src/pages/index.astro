@@ -12,16 +12,20 @@ Any page or data can be rebuilt only when needed, without site visitors ever get
 ---
 
 <Layout title="Welcome to Astro.">
-    <h1 class="mb-10">LegoBeans</h1>
+    <h1 class="mb-10">LEGOBEANS</h1>
     <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
+    <!-- <p>
         <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">heyy</a>
-    </p>
-    <label id="drop-zone">
-        Drop images here, or click to upload.
-        <input type="file" id="file-input" accept=".ldr" />
-    </label>
-    <ul id="preview"></ul>
-    <button id="clear-btn" class="btn">Clear</button>
+    </p> -->
+    <div class="drop-zone">
+        <label id="drop-zone">
+            Drop images here, or click to upload.
+            <input type="file" id="file-input" accept=".ldr" />
+        </label>
+        <div class="button-row">
+            <button id="clear-btn" class="btn">Clear</button>
+            <button id="convert-btn" class="btn">Convert</button>
+        </div>
+    </div>
     <script src="/script.js" defer></script>
 </Layout>
