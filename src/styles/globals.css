@@ -5,6 +5,10 @@
     --color-primary: #ff2121cf;
     --color-primary-content: #000000ff;
     --color-complementary: #f9e639ff;
+    --color-lego-red: #E60012;
+    --color-lego-yellow: #FFCD00;
+    --color-lego-blue: #0055BF;
+    --color-lego-green: #5FA400;
     --background-image-noise: linear-gradient(
             to bottom,
             color-mix(in oklab, var(--color-gray-950) 0%, transparent),
@@ -56,17 +60,26 @@
     }
 
     .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
+        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-all;
         padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
         font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        border-radius: var(--btn-border-radius, 0.375rem);
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 0px rgba(0, 0, 0, 0.2);
 
         &:hover {
-            @apply bg-primary/85;
+            @apply bg-primary/85 scale-105;
+            box-shadow: 0 6px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+            @apply scale-95;
+            box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2);
         }
 
         &:disabled {
             @apply text-gray-400 bg-gray-700;
+            box-shadow: 0 4px 0px rgba(0, 0, 0, 0.1);
         }
     }
 
@@ -87,10 +100,19 @@
   max-width: 100%;
   height: 300px;
   padding: 1em;
-  border: 1px solid #ffffffff;
-  border-radius: 4px;
+  border: 3px dashed #FFCD00;
+  border-radius: 12px;
   color: white;
   cursor: pointer;
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.08) 0%, rgba(0, 85, 191, 0.08) 100%);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 16px rgba(255, 205, 0, 0.2), inset 0 0 20px rgba(255, 205, 0, 0.05);
+}
+
+#drop-zone:hover {
+  border-color: #E60012;
+  background: linear-gradient(135deg, rgba(230, 0, 18, 0.15) 0%, rgba(0, 85, 191, 0.15) 100%);
+  box-shadow: 0 12px 24px rgba(230, 0, 18, 0.25), inset 0 0 30px rgba(255, 205, 0, 0.1);
 }
 
 #file-input {
@@ -104,10 +126,10 @@
 }
 
 .button-row {
-    @apply flex justify-between mt-4;
+    @apply flex justify-between mt-4 gap-2;
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    width: 600px;      /* same width as drop-zone */
+    width: 600px;
     max-width: 100%;
 }
