@@ -1,7 +1,6 @@
 [build]
-  # Directory where your built frontend code goes (e.g., if you use a build step)
-  # If your frontend is just in 'src', this might be 'src'
-  publish = "public"
+  command = "npm run build"
+  publish = "dist"
   
 [functions]
   # This tells Netlify where to look for your functions
