@@ -34,27 +34,41 @@ function handleFile(file) {
         return;
     }
 
-    const reader = new FileReader();
-
-    reader.onload = (e) => {
-        ldrContent = e.target.result; // the text of the LDR file
-        dropZone.textContent = "";
-        dropZone.textContent = file.name;
-
-        console.log("LDR file content loaded:");
-        console.log(ldrContent);
-
-        // Call your program here:
-        processLDR(ldrContent);
-    };
-
-    reader.readAsText(file);
+    sendFileToBackend(file);
 }
 
-// Placeholder for your program
-function processLDR(text) {
-    console.log("Processing LDR...");
-    // --- Insert your own program logic here ---
+async function sendFileToBackend(file) {
+    // 1. Read the file content as a Data URL (Base64)
+    const reader = new FileReader();
+
+    reader.onload = async function(event) {
+        // The result is a Data URL: "data:text/plain;base64,RklMR..."
+        const base64Content = event.target.result.split(',')[1]; // Get only the Base64 part
+
+        const response = await fetch('/.netlify/functions/test_backend', {
+            method: 'POST',
+            // Headers tell the function how to interpret the body
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Send the Base64 string in the body
+            body: JSON.stringify({ 
+                fileContent: base64Content,
+                isBase64Encoded: true // Useful hint for the Python function
+            }) 
+        });
+
+        const result = await response.text();
+        
+        if (response.ok) {
+            console.log("Backend response:", result);
+        } else {
+            console.error("Backend error:", result.error);
+        }
+    };
+
+    // Read the file as a Data URL (which encodes it in Base64)
+    reader.readAsDataURL(file);
 }
 
 // Clears the DropZone, resets the ldrContent
