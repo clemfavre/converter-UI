@@ -78,6 +78,7 @@ async function sendFileToBackend(file) {
 clearButton.addEventListener("click", () => {
     ldrContent = "";
     dropZone.textContent = dropZoneText;
+    ldr_file = "";
 })
 
 convertButton.addEventListener("click", () => {
