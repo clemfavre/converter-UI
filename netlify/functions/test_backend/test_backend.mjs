@@ -15,7 +15,7 @@
 // netlify/functions/test_backend.mjs
 
 import { exec } from "child_process";
-import { writeFile } from "fs/promises";
+import { writeFile, readFile } from "fs/promises";
 
 export default async (request, context) => {
   try {
@@ -44,7 +44,8 @@ export default async (request, context) => {
 
     // Call your Python script with the saved file path
     const pythonOutput = await new Promise((resolve, reject) => {
-      exec(`python3 netlify/functions/test_backend/ldr_to_lbcode.py ${inputFilePath} ${outputFilePath}`, (error, stdout, stderr) => {
+      exec(`python3 netlify/functions/test_backend/ldr_to_lbcode.py ${inputFilePath} ${outputFilePath}`, 
+        (error, stdout, stderr) => {
         if (error) return reject(stderr || error.message);
         resolve(stdout || "");
       });
@@ -59,7 +60,7 @@ export default async (request, context) => {
     return new Response(
       JSON.stringify({
         success: true,
-        lbcodeBase64: base64Result,
+        lbcodeBase64: base64Result
       }),
       { headers: { "Content-Type": "application/json" } }
     );

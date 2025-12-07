@@ -60,7 +60,20 @@ async function sendFileToBackend(file) {
             }) 
         });
 
-        const result = await response.text();
+        // const result = await response.json();
+        // console.log("Backend result:", result);
+        const raw = await response.text();
+        console.log("RAW RESPONSE:", raw);
+
+        let result;
+        try {
+            result = JSON.parse(raw);
+        } catch (e) {
+            console.error("JSON PARSE ERROR:", e);
+            return;
+}
+
+
         
         if (response.ok) {
             downloadLBCode(result.lbcodeBase64);
