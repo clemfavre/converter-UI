@@ -1,4 +1,3 @@
-let ldrContent = ""; // stores the .ldr file text
 let ldr_file;
 
 const dropZone = document.getElementById("drop-zone");
@@ -20,7 +19,6 @@ dropZone.addEventListener("click", () => fileInput.click());
 dropZone.addEventListener("drop", e => {
     const file = e.dataTransfer.files[0];
     handleFile(file);
-    dropZone.textContent = file.name;
 });
 
 // Handle file selected via input
@@ -37,6 +35,7 @@ function handleFile(file) {
         return;
     }
 
+    dropZone.textContent = file.name;
     ldr_file = file;
 }
 
@@ -76,7 +75,6 @@ async function sendFileToBackend(file) {
 
 // Clears the DropZone, resets the ldrContent
 clearButton.addEventListener("click", () => {
-    ldrContent = "";
     dropZone.textContent = dropZoneText;
     ldr_file = "";
 })
