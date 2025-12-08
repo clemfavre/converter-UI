@@ -60,10 +60,26 @@ async function sendFileToBackend(file) {
             }) 
         });
 
-        const result = await response.text();
+        // const result = await response.json();
+        // console.log("Backend result:", result);
+        const raw = await response.text();
+        console.log("RAW RESPONSE:", raw);
+
+
+        let result;
+        try {
+            result = JSON.parse(raw);
+        } catch (e) {
+            alert("The provided file is invalid.");
+            console.error("JSON PARSE ERROR:", e);
+            return;
+}
+
+
         
         if (response.ok) {
-            console.log("Backend response:", result);
+            downloadLBCode(result.lbcodeBase64);
+            //console.log("Backend response:", result);
         } else {
             console.error("Backend error:", result.error);
         }
@@ -71,6 +87,22 @@ async function sendFileToBackend(file) {
 
     // Read the file as a Data URL (which encodes it in Base64)
     reader.readAsDataURL(file);
+}
+
+function downloadLBCode(base64, filename = "converted.lbcode") {
+    const binary = atob(base64);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    
+    const blob = new Blob([bytes], { type: "application/octet-stream" });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    a.click();
+
+    URL.revokeObjectURL(url);
 }
 
 // Clears the DropZone, resets the ldrContent
