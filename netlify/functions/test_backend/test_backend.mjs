@@ -12,7 +12,6 @@
 //   }
 // }
 
-// netlify/functions/test_backend.mjs
 
 import { exec } from "child_process";
 import { writeFile, readFile } from "fs/promises";
