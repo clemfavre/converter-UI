@@ -65,10 +65,12 @@ async function sendFileToBackend(file) {
         const raw = await response.text();
         console.log("RAW RESPONSE:", raw);
 
+
         let result;
         try {
             result = JSON.parse(raw);
         } catch (e) {
+            alert("The provided file is invalid.");
             console.error("JSON PARSE ERROR:", e);
             return;
 }
