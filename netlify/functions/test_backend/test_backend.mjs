@@ -48,7 +48,7 @@ export default async (request, context) => {
 
     // Call your Python script with the saved file path
     const pythonOutput = await new Promise((resolve, reject) => {
-      exec(`python3 netlify/functions/test_backend/ldr_to_lbcode.py ${inputFilePath} ${outputFilePath}`, 
+      exec(`python netlify/functions/test_backend/ldr_to_lbcode.py ${inputFilePath} ${outputFilePath}`, 
         (error, stdout, stderr) => {
         if (error) return reject(stderr || error.message);
         resolve(stdout || "");
