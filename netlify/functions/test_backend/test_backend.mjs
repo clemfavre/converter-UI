@@ -12,7 +12,8 @@
 //   }
 // }
 
-
+import os from "os";
+import path from "path";
 import { exec } from "child_process";
 import { writeFile, readFile } from "fs/promises";
 
@@ -34,8 +35,12 @@ export default async (request, context) => {
     const buffer = Buffer.from(fileContent, "base64");
 
     // Input and output paths in /tmp folder of netlify.
-    const inputFilePath = "/tmp/uploaded_file.ldr";
-    const outputFilePath = "/tmp/converted.lbcode";
+    //const inputFilePath = "/tmp/uploaded_file.ldr";
+    //const outputFilePath = "/tmp/converted.lbcode";
+
+    const tempDir = os.tmpdir();
+    const inputFilePath = path.join(tempDir, "uploaded_file.ldr");
+    const outputFilePath = path.join(tempDir, "output_file.bin");
 
     await writeFile(inputFilePath, buffer);
 
