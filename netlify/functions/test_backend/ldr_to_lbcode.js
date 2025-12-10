@@ -1,3 +1,15 @@
+
+function arrayEquals(a, b) {
+    if (a === b) return true; 
+    if (a == null || b == null) return false;
+    if (a.length !== b.length) return false;
+
+    for (var i = 0; i < a.length; ++i) {
+        if (a[i] !== b[i]) return false;
+    }
+    return true;
+}
+
 function CompareParts(a, b) {
     if (a.pos.z < b.pos.z) {
         return -1;
@@ -56,6 +68,11 @@ function UpdateContextArea(is_towards_x, dpos, ctx) {
     min_y = dpos.y - ((!is_towards_x) ? depth - 1 : 0); 
     max_y = dpos.y + (is_towards_x ? depth : 0);
 
+    ctx.min_x = Math.min(ctx.min_x, min_x);
+    ctx.max_x = Math.max(ctx.max_x, max_x);
+    ctx.min_y = Math.min(ctx.min_y, min_y);
+    ctx.max_y = Math.max(ctx.max_y, max_y);
+
     return ctx;  
 }
 
@@ -67,10 +84,10 @@ function ProcessPosition(p, ctx) {
 
     let is_towards_x = false;
 
-    if (p.rotation == towards_x || p.rotation == towards_x_alt) {
+    if (arrayEquals(p.rotation, towards_x) || arrayEquals(p.rotation, towards_x_alt)) {
         is_towards_x = true;
     }
-    else if (p.rotation == towards_y || p.rotation == towards_y_alt) {
+    else if (arrayEquals(p.rotation, towards_y) || arrayEquals(p.rotation, towards_y_alt)) {
         is_towards_x = false;
     }
     else {
