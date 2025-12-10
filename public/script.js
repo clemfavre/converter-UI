@@ -47,7 +47,8 @@ async function sendFileToBackend(file) {
         // The result is a Data URL: "data:text/plain;base64,RklMR..."
         const base64Content = event.target.result.split(',')[1]; // Get only the Base64 part
 
-        const response = await fetch('/.netlify/functions/test_backend', {
+        //send ldr to backend
+        const answer = await fetch('/.netlify/functions/test_backend', {
             method: 'POST',
             // Headers tell the function how to interpret the body
             headers: {
@@ -56,32 +57,19 @@ async function sendFileToBackend(file) {
             // Send the Base64 string in the body
             body: JSON.stringify({ 
                 fileContent: base64Content,
-                isBase64Encoded: true // Useful hint for the Python function
+                isBase64Encoded: true
             }) 
         });
 
-        // const result = await response.json();
-        // console.log("Backend result:", result);
-        const raw = await response.text();
-        console.log("RAW RESPONSE:", raw);
+        //parse answer
+        const parsed = await answer.json();
+        console.log("parsed RESPONSE:", parsed);
 
-
-        let result;
-        try {
-            result = JSON.parse(raw);
-        } catch (e) {
-            alert("The provided file is invalid.");
-            console.error("JSON PARSE ERROR:", e);
-            return;
-}
-
-
-        
-        if (response.ok) {
-            downloadLBCode(result.lbcodeBase64);
-            //console.log("Backend response:", result);
+        //download lbcode
+        if (answer.ok) {
+            downloadLBCode(parsed.lbcodeBase64);
         } else {
-            console.error("Backend error:", result.error);
+            console.error("Backend error:", parsed.error);
         }
     };
 
