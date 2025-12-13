@@ -1,5 +1,6 @@
 # UI for LEGObeanz's file convertor
-[Website Link](https://legobeans.netlify.app/)
+[Website Link](https://legobeans.netlify.app/)  
+[Netlify template](https://github.com/netlify-templates/astro-platform-starter)
 
 ## Run on localhost
 1. Clone repo
