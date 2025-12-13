@@ -60,6 +60,13 @@ async function sendFileToBackend(file) {
                 isBase64Encoded: true
             }) 
         });
+        
+        //handles invalid inputs
+        if (answer.status === 400) {
+            alert("Bad request: the provided file might be empty");
+        } else if (answer.status === 500) {
+            alert("Internal server error: the provided file might be invalid")
+        }
 
         //parse answer
         const parsed = await answer.json();
@@ -68,8 +75,6 @@ async function sendFileToBackend(file) {
         //download lbcode
         if (answer.ok) {
             downloadLBCode(parsed.lbcodeBase64);
-        } else {
-            console.error("Backend error:", parsed.error);
         }
     };
 
