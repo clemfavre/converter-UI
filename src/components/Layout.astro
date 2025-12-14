@@ -1,9 +1,9 @@
 ---
-import '../../src/styles/globals.css';
-import '@fontsource-variable/inter/wght.css';
-import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import "../../src/styles/globals.css";
+import "@fontsource-variable/inter/wght.css";
+import interWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
     title: string;
@@ -19,8 +19,14 @@ const { title } = Astro.props;
         <title>{title}</title>
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
+        <link rel="icon" type="image/svg+xml" href="/LEGOBEANZ_white.svg" />
+        <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            href={interWoff2}
+            crossorigin
+        />
     </head>
     <body class="antialiased text-white bg-complementary">
         <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">

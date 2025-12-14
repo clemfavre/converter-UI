@@ -1,24 +1,11 @@
 ---
-import Logo from './Logo.astro';
-
-const navItems = [{ linkText: 'Home', href: '/' }];
+import Logo from './public/LEGOBEANZ_white.svg';
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+<nav class="fixed top-0 left-0 z-50 p-6">
+  <a href="/" aria-label="Home">
+    <Logo width={144} height={144} />
+  </a>
+</nav>
+
 </nav>

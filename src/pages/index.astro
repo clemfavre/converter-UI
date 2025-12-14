@@ -1,17 +1,24 @@
 ---
-import Layout from '../components/Layout.astro';
-import Markdown from '../components/Markdown.astro';
-//import '../../public/app.js';
+import Layout from "../components/Layout.astro";
+import Markdown from "../components/Markdown.astro";
 
-const explainer = `Make your design on Bricklink Studio and drop your .ldr file here`;
+const explainer = `
+Welcome to the **LEGOBEANZ converter!**
+
+Here, you can convert your .ldr file to an lbcode, which can be read by the printer.
+For this, follow these steps:`;
+
+const explainer_pt2 = `1. Make your design in **Bricklink Studio**
+2. Export your creation as a **.ldr** file
+3. Drop your **.ldr** file here and click on **Convert**
+4. Put the **lbcode** on an SD card and start printing!
+`;
 ---
 
-<Layout title="Welcome to Astro.">
-    <h1 class="mb-10">🧱 LEGOBEANS 🧱</h1>
+<Layout title="Welcome to LEGOBEANZ converter.">
+    <h1 class="flex pt-10 pb-5 sm:pt-22 mb-10">🧱 LEGOBEANZ 🧱</h1>
     <Markdown content={explainer} class="mb-10 text-lg" />
-    <!-- <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">heyy</a>
-    </p> -->
+    <Markdown content={explainer_pt2} class="mb-10 text-lg" />
     <div class="drop-zone">
         <label id="drop-zone">
             Drop your .ldr file here, or click to upload.
