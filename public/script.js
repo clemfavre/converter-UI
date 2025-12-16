@@ -6,7 +6,7 @@ const fileInput = document.getElementById("file-input");
 const filePreview = document.getElementById("preview");
 const clearButton = document.getElementById("clear-btn");
 const convertButton = document.getElementById("convert-btn");
-const downloadExampleButton = document.getElementById("download-example-btn");
+const downloadExampleButton = document.getElementById("download-example1-btn");
 
 // Clicking the zone opens the file dialog
 dropZone.addEventListener("click", () => fileInput.click());
