@@ -75,7 +75,8 @@ async function sendFileToBackend(file) {
 
         //download lbcode
         if (answer.ok) {
-            downloadLBCode(parsed.lbcodeBase64);
+            filename = file.name.replace(".ldr", ".lbcode")
+            downloadLBCode(parsed.lbcodeBase64, filename);
         }
     };
 
