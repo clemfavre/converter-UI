@@ -3,17 +3,17 @@ import Layout from "../components/Layout.astro";
 import Markdown from "../components/Markdown.astro";
 import { Image } from "astro:assets";
 import houseImg from "../assets/house_example.jpeg";
+import prusaImg from "../assets/corgi.jpg";
 
 const explainer = `
 Welcome to the **LEGOBEANZ converter!**
 
-Here, you can convert your .ldr file to an lbcode, which can be read by the printer.
+Here, you can convert your .ldr file to an lbcode, which can be read by the printer. You can also download a pre-built example at the bottom of this page.
 For this, follow these steps:`;
 
-const explainer_pt2_1to3 = `1. Make your design in **Bricklink Studio**
+const explainer_pt2 = `1. Make your design in **Bricklink Studio**
 2. Export your creation as a **.ldr** file
-3. Drop your **.ldr** file below and click on **Convert**`;
-const explainer_pt2_4 = `
+3. Drop your **.ldr** file here and click on **Convert**
 4. Put the **lbcode** on an SD card and start printing!
 `;
 ---
@@ -21,27 +21,7 @@ const explainer_pt2_4 = `
 <Layout title="Welcome to LEGOBEANZ converter.">
     <h1 class="flex pt-10 pb-5 sm:pt-22 mb-10">🧱 LEGOBEANZ 🧱</h1>
     <Markdown content={explainer} class="mb-10 text-lg" />
-
-    <div
-        class="flex flex-col md:flex-row items-center justify-left gap-16 mb-4"
-    >
-        <Markdown content={explainer_pt2_1to3} class="text-lg" />
-        <span class="text-4xl font-bold text-white-500 uppercase shrink-0"
-            >or</span
-        >
-        <div class="flex flex-col items-center gap-1 shrink-0">
-            <Image
-                src={houseImg}
-                alt="Preview"
-                width={200}
-                class="rounded-xl shadow-lg"
-            />
-            <button id="download-example-btn" class="btn">
-                Download House Example
-            </button>
-        </div>
-    </div>
-    <Markdown content={explainer_pt2_4} class="text-lg mb-10" />
+    <Markdown content={explainer_pt2} class="mb-10 text-lg" />
     <div class="drop-zone">
         <label id="drop-zone">
             Drop your .ldr file here, or click to upload.
@@ -50,6 +30,33 @@ const explainer_pt2_4 = `
         <div class="button-row">
             <button id="clear-btn" class="btn">Clear</button>
             <button id="convert-btn" class="btn">Convert</button>
+        </div>
+    </div>
+    <Markdown
+        content="Here are some pre-built examples that you can download directly."
+        class="mb-5 text-lg mt-15"
+    />
+    <div class="flex flex-col sm:flex-row justify-center gap-40">
+        <div class="flex flex-col items-center gap-4">
+            <Image
+                src={houseImg}
+                alt="Description 1"
+                width={200}
+                class="rounded-xl shadow-lg"
+            />
+            <button class="btn" id="download-example1-btn">
+                Download House Example
+            </button>
+        </div>
+
+        <div class="flex flex-col items-center gap-4">
+            <Image
+                src={prusaImg}
+                alt="Description 2"
+                width={200}
+                class="rounded-xl shadow-lg"
+            />
+            <button class="btn" id=""> Download 2nd example </button>
         </div>
     </div>
     <script src="/script.js" defer></script>
