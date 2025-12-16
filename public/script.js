@@ -7,6 +7,7 @@ const filePreview = document.getElementById("preview");
 const clearButton = document.getElementById("clear-btn");
 const convertButton = document.getElementById("convert-btn");
 const downloadExampleButton = document.getElementById("download-example1-btn");
+const downloadExample2Button = document.getElementById("download-example2-btn");
 
 // Clicking the zone opens the file dialog
 dropZone.addEventListener("click", () => fileInput.click());
@@ -113,5 +114,12 @@ downloadExampleButton.addEventListener("click", () => {
     const a = document.createElement("a");
     a.href = "/house_example.lbcode";
     a.download = "house_example.lbcode";
+    a.click();
+})
+
+downloadExample2Button.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = "/castle_example.lbcode";
+    a.download = "castle_example.lbcode";
     a.click();
 })
